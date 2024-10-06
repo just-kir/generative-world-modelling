@@ -32,42 +32,42 @@ class Canvas:
 
 
 class Square:
-  def __init__(self, x, y, s, color):
-    self.x = x
-    self.y = y
-    self.s = s
-    self.color = color
+    def __init__(self, x, y, s, color):
+        self.x = x
+        self.y = y
+        self.s = s
+        self.color = color
 
-  def draw(self, canvas):
-    x1 = self.x - self.s // 2
-    y1 = self.y - self.s // 2
-    x2 = x1 + self.s
-    y2 = y1 + self.s
-    canvas.draw.rectangle([x1, y1, x2, y2], fill=self.color, outline=None)
+    def draw(self, canvas):
+        x1 = self.x - self.s // 2
+        y1 = self.y - self.s // 2
+        x2 = x1 + self.s
+        y2 = y1 + self.s
+        canvas.draw.rectangle([x1, y1, x2, y2], fill=self.color, outline=None)
 
 
 def sample_two_squares_unifrom_dist(sq_size=30, bounds=(50, 150), show=True):
-  "two squares sampled with a uniform distance between them, centered in the image"
-  canvas = Canvas()
+    "two squares sampled with a uniform distance between them, centered in the image"
+    canvas = Canvas()
 
-  square_size = sq_size
+    square_size = sq_size
 
-  distance = random.uniform(*bounds)
+    distance = random.uniform(*bounds)
 
-  angle = random.uniform(0, 2 * math.pi)
-  x1 = canvas.width // 2 - distance / 2 * math.cos(angle)
-  y1 = canvas.height // 2 - distance / 2 * math.sin(angle)
-  x2 = canvas.width // 2 + distance / 2 * math.cos(angle)
-  y2 = canvas.height // 2 + distance / 2 * math.sin(angle)
+    angle = random.uniform(0, 2 * math.pi)
+    x1 = canvas.width // 2 - distance / 2 * math.cos(angle)
+    y1 = canvas.height // 2 - distance / 2 * math.sin(angle)
+    x2 = canvas.width // 2 + distance / 2 * math.cos(angle)
+    y2 = canvas.height // 2 + distance / 2 * math.sin(angle)
 
-  square1 = Square(int(x1), int(y1), square_size, (255, 0, 0))  # Red square
-  square2 = Square(int(x2), int(y2), square_size, (0, 0, 255))  # Blue square
+    square1 = Square(int(x1), int(y1), square_size, (255, 0, 0))  # Red square
+    square2 = Square(int(x2), int(y2), square_size, (0, 0, 255))  # Blue square
 
-  square1.draw(canvas)
-  square2.draw(canvas)
+    square1.draw(canvas)
+    square2.draw(canvas)
 
-  tensor_image = canvas.to_tensor()
-  if show:
-      canvas.show()
+    tensor_image = canvas.to_tensor()
+    if show:
+        canvas.show()
 
-  return tensor_image, distance
+    return tensor_image, distance
